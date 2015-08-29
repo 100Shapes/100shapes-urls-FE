@@ -39,13 +39,17 @@ export default ngModule => {
 
             vm.params = {};
             vm.inputUrl = '';
+            vm.isSaving = false;
         };
 
         vm.create = () => {
             "use strict";
+
+            vm.isSaving = true;
             const generatedUrl = UrlGeneratorService.generate(vm.inputUrl, vm.params);
 
             ShortLinksService.add(generatedUrl).then((ref) => {
+                vm.reset();
                 const key = ref.key();
                 vm.outputUrl = `http://100s.co/${key}`;
             });
