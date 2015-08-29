@@ -4,7 +4,7 @@ export default ngModule => {
 
     ngModule.service('CampaignsService', CampaignsService);
 
-    function CampaignsService($firebaseArray, FIREBASE_URL) {
+    function CampaignsService($firebaseArray, $firebaseObject, FIREBASE_URL) {
         "use strict";
 
         const ref = new Firebase(`${FIREBASE_URL}/campaigns`);
@@ -13,15 +13,21 @@ export default ngModule => {
 
         return {
 
-            add(name) {
+            getOrCreate(name) {
+                const slug = slugify(name).toLowerCase();
+                const campaignRef = ref.child(slug);
 
-                return campaigns.$add({
-                    name: name,
-                    slug: slugify(name)
-                });
+                return $firebaseObject(campaignRef);
             },
 
-            getList() {
+            add(name) {
+
+                let campaign = this.getOrCreate(name);
+                campaign.$value(true);
+                return campaign.$save();
+            },
+
+            list() {
                 return campaigns;
             },
 

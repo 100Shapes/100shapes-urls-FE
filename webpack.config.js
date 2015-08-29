@@ -50,7 +50,14 @@ module.exports = {
 
         noParse: [
             path.join('node_modules', '/angular'),
-            path.join('node_modules', '/angular-ui-router')
+            path.join('node_modules', '/angular-ui-router'),
+            path.join('node_modules', '/angular-animate'),
+            path.join('node_modules', '/angular-sanitize'),
+            path.join('node_modules', '/angular-aria'),
+            path.join('node_modules', '/angular-material'),
+            path.join('node_modules', '/angular-material-icons'),
+            path.join('node_modules', '/angularfire'),
+            path.join('node_modules', '/firebase')
         ]
     },
 
