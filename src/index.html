@@ -14,7 +14,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
     <![endif]-->
 </head>
-<body layout="column" ng-controller="MainCtrl as vm">
+<body layout="column"
+      ng-controller="MainCtrl as vm">
 
 <md-toolbar layout="row">
     <div class="md-toolbar-tools">
@@ -45,10 +46,14 @@
          flex
          id="content">
 
-        <md-content layout="column"
-                    flex
-                    class="md-padding"
+        <md-content flex
+                    md-scroll-y>
+
+            <div layout="column"
+                 layout-fill
+                 layout-padding
                     ui-view>
+            </div>
 
         </md-content>
     </div>
