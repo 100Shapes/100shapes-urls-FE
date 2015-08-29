@@ -26,8 +26,9 @@
                 <md-input-container>
                     <label>Select a Campaign</label>
                     <md-select ng-model="vm.params.campaign" aria-label="Campaign select">
-                        <md-option value="{{  campaign.value }}" ng-repeat="campaign in vm.options.campaigns">{{
-                            campaign.label }}
+                        <md-option value="{{  campaign }}" ng-repeat="campaign in vm.options.campaigns track by $index">
+                            {{
+                            campaign }}
                         </md-option>
                     </md-select>
                 </md-input-container>

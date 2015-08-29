@@ -3,6 +3,8 @@ const angular = require('angular');
 require('angular-ui-router');
 require('angular-material');
 require('angular-messages');
+require('firebase');
+require('angularfire');
 require('angular-material-icons');
 require('polyfill-function-prototype-bind');
 
@@ -14,7 +16,8 @@ var ngModule = angular.module('app', [
     'ui.router',
     'ngMaterial',
     'ngMdIcons',
-    'ngMessages'
+    'ngMessages',
+    'firebase'
 ]);
 
 require('./config')(ngModule);

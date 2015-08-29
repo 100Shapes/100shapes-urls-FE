@@ -7,7 +7,13 @@ export default ngModule => {
                 .state('urls', {
                     url: '/',
                     template: require('./urls.html'),
-                    controller: 'UrlsCtrl as vm'
+                    controller: 'UrlsCtrl as vm',
+                    resolve: {
+                        campaigns(CampaignsService) {
+                            "use strict";
+                            return CampaignsService.getList();
+                        }
+                    }
                 });
         });
 
@@ -15,7 +21,7 @@ export default ngModule => {
 
     ngModule.controller('UrlsCtrl', UrlsCtrl);
 
-    function UrlsCtrl($timeout) {
+    function UrlsCtrl(campaigns, $timeout) {
         "use strict";
         let vm = this;
 
@@ -24,24 +30,7 @@ export default ngModule => {
         vm.params = {};
 
         vm.options = {
-            campaigns: [
-                {
-                    label: 'Email',
-                    value: 'email'
-                },
-                {
-                    label: 'Referral',
-                    value: 'referral'
-                },
-                {
-                    label: 'Social',
-                    value: 'social'
-                },
-                {
-                    label: 'Aggregation',
-                    value: 'aggregation'
-                }
-            ]
+            campaigns: campaigns
         };
 
         vm.serialize = (params) => {
