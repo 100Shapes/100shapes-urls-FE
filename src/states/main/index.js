@@ -1,5 +1,7 @@
 export default ngModule => {
 
+    require('./main.scss');
+
     ngModule
         .controller('MainCtrl', MainCtrl);
 

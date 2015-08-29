@@ -19,10 +19,13 @@
 <md-toolbar layout="row">
     <div class="md-toolbar-tools">
         <md-button ng-click="vm.toggleSidenav('left')"
-                   hide-gt-sm class="md-icon-button">
+                   hide-gt-sm
+                   class="md-icon-button"
+                   aria-label="Menu">
 
-            <md-icon aria-label="Menu"
-                     md-svg-icon="https://s3-us-west-2.amazonaws.com/s.cdpn.io/68133/menu.svg"></md-icon>
+            <ng-md-icon icon="menu"
+                        size="36"></ng-md-icon>
+
         </md-button>
         <h1>100 Shapes URL generator</h1>
     </div>
