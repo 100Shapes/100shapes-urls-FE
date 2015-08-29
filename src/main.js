@@ -1,8 +1,7 @@
 // Libs
 const angular = require('angular');
 require('angular-ui-router');
-require('angular-sanitize');
-require('angular-animate');
+require('angular-material');
 require('polyfill-function-prototype-bind');
 
 // Styles
@@ -11,8 +10,7 @@ require('css/main.less');
 
 var ngModule = angular.module('app', [
     'ui.router',
-    'ngSanitize',
-    'ngAnimate'
+    'ngMaterial'
 ]);
 
 require('./config')(ngModule);
