@@ -1,6 +1,6 @@
 export default ngModule => {
 
-    require('./ohs-hello.less');
+    require('./ohs-hello.scss');
 
     ngModule
         .directive('ohsHello', ohsHello);

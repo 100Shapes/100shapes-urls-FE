@@ -5,7 +5,7 @@ require('angular-material');
 require('polyfill-function-prototype-bind');
 
 // Styles
-require('css/main.less');
+require('css/main.scss');
 
 
 var ngModule = angular.module('app', [

@@ -1,4 +1,4 @@
 export default ngModule => {
 
-    require('./home')(ngModule);
+    require('./main')(ngModule);
 }

@@ -26,8 +26,8 @@ module.exports = {
             loader: 'style!css!autoprefixer-loader?browsers=last 2 version',
             exclude: /node_modules/
         }, {
-            test: /\.less$/,
-            loader: 'style!css!autoprefixer-loader?browsers=last 2 version!less',
+            test: /\.scss/,
+            loader: 'style!css!autoprefixer-loader?browsers=last 2 version!sass',
             exclude: /node_modules/
         }, {
             test: /\.html$/,
