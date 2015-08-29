@@ -16,25 +16,38 @@
                            ng-pattern="/http://www.100shapes.com/*/">
 
                     <div ng-messages="urlForm.url.$error"
-                         ng-if="urlForm.url.$dirty">
-                        <div ng-message="required">Whoa there! You need to fill me in.</div>
-                        <div ng-message="pattern">Whoa there! I only shorten URLs for 100 Shapes.</div>
+                         ng-if="urlForm.url.$touched">
+                        <div ng-message="required">Whoa there! You <b>need</b> to fill me in.</div>
+                        <div ng-message="pattern">Whoa there! I only shorten URLs for <b>100 Shapes</b>.</div>
                     </div>
                 </md-input-container>
 
+                <md-autocomplete flex required
+                                 md-input-name="campaign"
+                                 md-input-minlength="3"
+                                 md-search-text="vm.params.campaign"
+                                 md-items="campaign in vm.allCampaigns()"
+                                 md-item-text="campaign.name"
+                                 md-floating-label="Add a campaign">
+                    <md-item-template>
+                        <span md-highlight-text="vm.params.campaign"
+                              md-highlight-flags="^i">
+                            {{ campaign.name }}
+                        </span>
+                    </md-item-template>
 
-                <md-input-container>
-                    <label>Select a Campaign</label>
-                    <md-select ng-model="vm.params.campaign"
-                               aria-label="Campaign select"
-                               md-on-open="vm.loadCampaigns()">
-                        <md-option value="{{  campaign.$id }}"
-                                   ng-repeat="campaign in vm.options.campaigns track by $index">
-                            {{ campaign.$id }}
-                        </md-option>
-                    </md-select>
-                </md-input-container>
+                    <md-not-found>
+                        Nothing found, so I'll create a new campaign for you.
+                    </md-not-found>
 
+                    <div ng-messages="urlForm.campaign.$error"
+                         ng-if="urlForm.campaign.$touched">
+
+                        <div ng-message="required">You <b>must</b> have a favorite state.</div>
+                        <div ng-message="minlength">Your entry is not long enough.</div>
+                        <div ng-message="maxlength">Your entry is too long.</div>
+                    </div>
+                </md-autocomplete>
 
                 <md-input-container>
                     <label>Where are you posting? i.e. "Twitter"</label>

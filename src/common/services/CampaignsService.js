@@ -8,12 +8,11 @@ export default ngModule => {
         "use strict";
 
         const ref = new Firebase(`${FIREBASE_URL}/campaigns`);
-
         let campaigns = $firebaseArray(ref);
 
         return {
 
-            getOrCreate(name) {
+            _get(name) {
                 const slug = slugify(name).toLowerCase();
                 const campaignRef = ref.child(slug);
 
@@ -21,9 +20,8 @@ export default ngModule => {
             },
 
             add(name) {
-
-                let campaign = this.getOrCreate(name);
-                campaign.$value(true);
+                let campaign = this._get(name);
+                campaign.name = name;
                 return campaign.$save();
             },
 

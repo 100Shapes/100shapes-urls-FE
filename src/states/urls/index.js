@@ -23,15 +23,8 @@ export default ngModule => {
 
         vm.params = {};
 
-        vm.options = {
-            campaigns: [{
-                $id: 'Interactive Display Screen'
-            }]
-        };
-
-        vm.loadCampaigns = () => {
-            //vm.options.campaigns = CampaignsService.getList();
-            return CampaignsService.isLoaded();
+        vm.allCampaigns = () => {
+            return CampaignsService.list();
         };
 
         vm.reset = () => {
@@ -47,6 +40,8 @@ export default ngModule => {
 
             vm.isSaving = true;
             const generatedUrl = UrlGeneratorService.generate(vm.inputUrl, vm.params);
+
+            CampaignsService.add(vm.params.campaign);
 
             ShortLinksService.add(generatedUrl).then((ref) => {
                 vm.reset();
