@@ -8,9 +8,6 @@ export default ngModule => {
     function MainCtrl($mdSidenav) {
         let vm = this;
 
-        vm.toggleSidenav = (menuId) => {
-            $mdSidenav(menuId).toggle();
-        };
     }
 
 };
