@@ -73,6 +73,19 @@
             </div>
         </md-card>
 
+        <md-card ng-if="vm.outputUrl">
+            <md-card-content>
+                <h2 class="md-title">Share this</h2>
+                <md-input-container>
+                    <label>
+                        Short URL
+                    </label>
+                    <input type="url"
+                           ng-model="vm.outputUrl"/>
+                </md-input-container>
+            </md-card-content>
+        </md-card>
+
     </form>
 
 </div>

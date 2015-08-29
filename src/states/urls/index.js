@@ -45,9 +45,11 @@ export default ngModule => {
             "use strict";
             const generatedUrl = UrlGeneratorService.generate(vm.inputUrl, vm.params);
 
-            CampaignsService.add(vm.params.campaign);
-            ShortLinksService.add(generatedUrl);
-            LongLinksService.add(vm.inputUrl);
+            ShortLinksService.add(generatedUrl).then((ref) => {
+                const key = ref.key();
+                vm.outputUrl = `http://100s.co/${key}`;
+            });
+
         };
 
     }
