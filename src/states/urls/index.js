@@ -7,13 +7,7 @@ export default ngModule => {
                 .state('urls', {
                     url: '/',
                     template: require('./urls.html'),
-                    controller: 'UrlsCtrl as vm',
-                    resolve: {
-                        campaigns(CampaignsService) {
-                            "use strict";
-                            return CampaignsService.getList();
-                        }
-                    }
+                    controller: 'UrlsCtrl as vm'
                 });
         });
 
@@ -21,7 +15,7 @@ export default ngModule => {
 
     ngModule.controller('UrlsCtrl', UrlsCtrl);
 
-    function UrlsCtrl(campaigns, $timeout) {
+    function UrlsCtrl(CampaignsService, ShortLinksService, LongLinksService, UrlGeneratorService, $timeout) {
         "use strict";
         let vm = this;
 
@@ -30,16 +24,14 @@ export default ngModule => {
         vm.params = {};
 
         vm.options = {
-            campaigns: campaigns
+            campaigns: [{
+                $id: 'Interactive Display Screen'
+            }]
         };
 
-        vm.serialize = (params) => {
-            var str = [];
-            for (var p in params)
-                if (params.hasOwnProperty(p)) {
-                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(params[p].toLowerCase().replace(/ /g, '')));
-                }
-            return str.join("&");
+        vm.loadCampaigns = () => {
+            //vm.options.campaigns = CampaignsService.getList();
+            return CampaignsService.isLoaded();
         };
 
         vm.reset = () => {
@@ -51,11 +43,11 @@ export default ngModule => {
 
         vm.create = () => {
             "use strict";
+            const generatedUrl = UrlGeneratorService.generate(vm.inputUrl, vm.params);
 
-            $timeout(() => {
-                vm.output = 'http://100s.co/e7sd0d8?' + vm.serialize(vm.params);
-            }, 500);
-
+            CampaignsService.add(vm.params.campaign);
+            ShortLinksService.add(generatedUrl);
+            LongLinksService.add(vm.inputUrl);
         };
 
     }
