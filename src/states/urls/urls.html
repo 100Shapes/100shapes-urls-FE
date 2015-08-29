@@ -24,7 +24,6 @@
 
                 <md-autocomplete flex required
                                  md-input-name="campaign"
-                                 md-input-minlength="3"
                                  md-search-text="vm.params.campaign"
                                  md-items="campaign in vm.allCampaigns()"
                                  md-item-text="campaign.name"
@@ -36,28 +35,32 @@
                         </span>
                     </md-item-template>
 
-                    <md-not-found>
-                        Nothing found, so I'll create a new campaign for you.
-                    </md-not-found>
-
                     <div ng-messages="urlForm.campaign.$error"
                          ng-if="urlForm.campaign.$touched">
 
-                        <div ng-message="required">You <b>must</b> have a favorite state.</div>
-                        <div ng-message="minlength">Your entry is not long enough.</div>
-                        <div ng-message="maxlength">Your entry is too long.</div>
+                        <div ng-message="required">You <b>must</b> provide a campaign.</div>
                     </div>
                 </md-autocomplete>
 
-                <md-input-container>
-                    <label>Where are you posting? i.e. "Twitter"</label>
-                    <input type="text"
-                           ng-model="vm.params.source"
-                           name="source"
-                           required/>
 
-                </md-input-container>
+                <md-autocomplete flex required
+                                 md-input-name="source"
+                                 md-search-text="vm.params.source"
+                                 md-items="source in vm.allSources()"
+                                 md-item-text="source.name"
+                                 md-floating-label="Where are you sharing? i.e. 'Twitter'">
+                    <md-item-template>
+                        <span md-highlight-text="vm.params.source"
+                              md-highlight-flags="^i">
+                            {{ source.name }}
+                        </span>
+                    </md-item-template>
 
+                    <div ng-messages="urlForm.source.$error"
+                         ng-if="urlForm.source.$touched">
+                        <div ng-message="required">You <b>must</b> provide a source.</div>
+                    </div>
+                </md-autocomplete>
 
                 <md-input-container>
                     <label>
