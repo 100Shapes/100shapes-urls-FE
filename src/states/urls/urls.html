@@ -1,20 +1,76 @@
 <div flex-gt-md="50"
      flex-gt-sm="90">
-    <md-card>
-        <md-card-content>
-            <h2 class="md-title">Paracosm</h2>
 
-            <p>
-                The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-                two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-            </p>
-        </md-card-content>
-        <div class="md-actions" layout="row" layout-align="end center">
-            <md-button>Action 1</md-button>
-            <md-button>Action 2</md-button>
-        </div>
-    </md-card>
+    <form name="urlForm" novalidate>
 
+        <md-card>
+            <md-card-content>
+                <h2 class="md-title">Sharing a URL</h2>
+
+                <md-input-container>
+                    <label>URL to share</label>
+                    <input ng-model="vm.inputUrl"
+                           required
+                           name="url"
+                           type="url"
+                           ng-pattern="/http://www.100shapes.com/*/">
+
+                    <div ng-messages="urlForm.url.$error"
+                         ng-if="urlForm.url.$dirty">
+                        <div ng-message="required">Whoa there! You need to fill me in.</div>
+                        <div ng-message="pattern">Whoa there! I only shorten URLs for 100 Shapes.</div>
+                    </div>
+                </md-input-container>
+
+
+                <md-input-container>
+                    <label>Select a Campaign</label>
+                    <md-select ng-model="vm.params.campaign" aria-label="Campaign select">
+                        <md-option value="{{  campaign.value }}" ng-repeat="campaign in vm.options.campaigns">{{
+                            campaign.label }}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+
+
+                <md-input-container>
+                    <label>Where are you posting? i.e. "Twitter"</label>
+                    <input type="text"
+                           ng-model="vm.params.medium"
+                           name="medium"
+                           required/>
+
+                </md-input-container>
+
+
+                <md-input-container>
+                    <label>
+                        Where on {{ vm.params.medium }}? i.e. "post"
+                    </label>
+                    <input type="text"
+                           ng-model="vm.params.source"
+                           name="source"
+                           required/>
+                </md-input-container>
+
+
+            </md-card-content>
+
+            <div class="md-actions" layout="row" layout-align="end center">
+                <md-button ng-click="vm.create()"
+                           ng-disabled="urlForm.$invalid"
+                           class="md-raised md-primary">
+
+                    Create
+                </md-button>
+
+                <md-button ng-click="vm.reset()">
+                    Reset
+                </md-button>
+            </div>
+        </md-card>
+
+    </form>
 
 </div>
 

@@ -2,6 +2,7 @@
 const angular = require('angular');
 require('angular-ui-router');
 require('angular-material');
+require('angular-messages');
 require('angular-material-icons');
 require('polyfill-function-prototype-bind');
 
@@ -12,7 +13,8 @@ require('css/main.scss');
 var ngModule = angular.module('app', [
     'ui.router',
     'ngMaterial',
-    'ngMdIcons'
+    'ngMdIcons',
+    'ngMessages'
 ]);
 
 require('./config')(ngModule);
