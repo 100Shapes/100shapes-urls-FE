@@ -1,0 +1,24 @@
+{
+  "name": "webpack-angular-starter",
+  "version": "0.0.1",
+  "homepage": "https://github.com/mmmoli/webpack-angular-starter",
+  "authors": [
+    "Michele Memoli <michele@100shapes.com>"
+  ],
+  "description": "Opinionated Angular project template",
+  "main": "main.js",
+  "keywords": [
+    "Angular"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "cardinal": "~3.2.5"
+  }
+}
