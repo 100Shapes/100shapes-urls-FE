@@ -70,10 +70,6 @@ module.exports = {
         //    }
         //}),
 
-        new webpack.ResolverPlugin(
-            new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", ["main"])
-        ),
-
         new webpack.DefinePlugin({
             __API_BASE_URL__: JSON.stringify(process.env.API_BASE_URL),
             __DEV__: JSON.parse(process.env.DEV || true)
@@ -94,10 +90,7 @@ module.exports = {
     resolve: {
         alias: {
             'css': path.join(__dirname, 'src/css')
-        },
-        root: [
-            path.join(__dirname, "bower_components")
-        ]
+        }
 
     }
 };
