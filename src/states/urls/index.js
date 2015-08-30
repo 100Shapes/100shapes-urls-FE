@@ -31,6 +31,10 @@ export default ngModule => {
             return SourcesService.list();
         };
 
+        vm.allMediumsForSource = (source) => {
+            return MediumsService.listForSource(source);
+        };
+
         vm.reset = () => {
             "use strict";
 

@@ -62,15 +62,24 @@
                     </div>
                 </md-autocomplete>
 
-                <md-input-container>
-                    <label>
-                        Where on {{ vm.params.source }}? i.e. "post"
-                    </label>
-                    <input type="text"
-                           ng-model="vm.params.medium"
-                           name="medium"
-                           required/>
-                </md-input-container>
+                <md-autocomplete flex required
+                                 md-input-name="medium"
+                                 md-search-text="vm.params.medium"
+                                 md-items="medium in vm.allMediumsForSource(vm.params.source)"
+                                 md-item-text="medium.$value"
+                                 md-floating-label="As a what? i.e. 'post'">
+                    <md-item-template>
+                        <span md-highlight-text="vm.params.medium"
+                              md-highlight-flags="^i">
+                            {{ medium.$value }}
+                        </span>
+                    </md-item-template>
+
+                    <div ng-messages="urlForm.medium.$error"
+                         ng-if="urlForm.medium.$touched">
+                        <div ng-message="required">You <b>must</b> provide a medium.</div>
+                    </div>
+                </md-autocomplete>
 
 
             </md-card-content>
