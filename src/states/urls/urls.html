@@ -30,7 +30,8 @@
 
         <md-grid-list md-cols="3"
                       md-gutter="8px"
-                      md-row-height="4:3">
+                      md-row-height="4:3"
+                      ng-if="vm.configurations">
 
             <md-grid-tile ng-repeat="configuration in vm.configurations track by configuration.$id"
                           ng-click="vm.setOutputUrl(configuration.shortUrl)"
