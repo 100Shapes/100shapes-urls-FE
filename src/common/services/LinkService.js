@@ -1,8 +1,10 @@
 export default ngModule => {
 
+    let urllib = require('url');
+
     ngModule.service('LinkService', LinkService);
 
-    function LinkService($q, UrlGeneratorService, CampaignsService, SourcesService, MediumsService, ConfigurationsService, ShortLinksService) {
+    function LinkService(SHORT_URL_HOSTNAME, $q, UrlGeneratorService, CampaignsService, SourcesService, MediumsService, ConfigurationsService, ShortLinksService) {
         "use strict";
 
         return {
@@ -32,7 +34,7 @@ export default ngModule => {
                 return ShortLinksService.add(url)
                     .then((ref) => {
                         const key = ref.key();
-                        return `http://100s.co/${key}`;
+                        return urllib.resolve(SHORT_URL_HOSTNAME, key);
                     });
             },
 
