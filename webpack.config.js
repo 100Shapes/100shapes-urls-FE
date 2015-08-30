@@ -57,7 +57,9 @@ module.exports = {
             path.join('node_modules', '/angular-material'),
             path.join('node_modules', '/angular-material-icons'),
             path.join('node_modules', '/angularfire'),
-            path.join('node_modules', '/firebase')
+            path.join('node_modules', '/firebase'),
+            path.join('node_modules', '/shortid'),
+            path.join('node_modules', '/slugify')
         ]
     },
 
@@ -83,7 +85,7 @@ module.exports = {
         })
     ],
 
-    //devtool: 'eval',
+    devtool: 'eval',
 
     devServer: {
         contentBase: "./src",

@@ -24,18 +24,37 @@
                     </div>
                 </md-input-container>
 
+            </md-card-content>
+        </md-card>
+
+
+        <md-grid-list md-cols="2"
+                      md-gutter="1em"
+                      md-row-height="16:9">
+
+            <md-grid-tile ng-repeat="configuration in vm.configurations track by configuration.$id"
+                          ng-click="vm.setOutputUrl(configuration.shortUrl)"
+                          class="md-whiteframe-z2">
+
                 <ul>
-                    <li ng-repeat="configuration in vm.configurations track by configuration.$id">
-                        <a href
-                           ng-click="vm.setOutputUrl(configuration.shortUrl)">
-                            <h2>{{ configuration.campaign }}</h2>
-                            <ul>
-                                <li>{{ configuration.source }}</li>
-                                <li>{{ configuration.medium }}</li>
-                            </ul>
-                        </a>
-                    </li>
+                    <li>{{ configuration.source }}</li>
+                    <li>{{ configuration.medium }}</li>
                 </ul>
+
+                <md-grid-tile-footer>
+                    <h3>{{ configuration.campaign }}</h3>
+                </md-grid-tile-footer>
+
+            </md-grid-tile>
+
+        </md-grid-list>
+
+
+        <md-card ng-disabled="vm.isSaving"
+                 ng-if="vm.inputUrl">
+
+            <md-card-content>
+                <h2 class="md-title">Not in the list above? Create a new share link</h2>
 
                 <md-autocomplete flex required
                                  md-input-name="campaign"
