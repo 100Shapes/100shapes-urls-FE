@@ -15,7 +15,7 @@ export default ngModule => {
 
     ngModule.controller('UrlsCtrl', UrlsCtrl);
 
-    function UrlsCtrl(CampaignsService, ShortLinksService, LongLinksService, MediumsService, SourcesService, UrlGeneratorService) {
+    function UrlsCtrl(CampaignsService, ShortLinksService, ConfigurationsService, MediumsService, SourcesService, UrlGeneratorService) {
         "use strict";
         let vm = this;
 
@@ -42,7 +42,7 @@ export default ngModule => {
                 return false;
             }
 
-            vm.configurations = LongLinksService.listForUrl(vm.inputUrl);
+            vm.configurations = ConfigurationsService.listForUrl(vm.inputUrl);
         };
 
         vm.reset = () => {
@@ -52,6 +52,7 @@ export default ngModule => {
             vm.inputUrl = '';
             vm.configurations = [];
             vm.urlForm.$setPristine();
+            vm.urlForm.setUntouched();
         };
 
         vm.setOutputUrl = (url) => {
@@ -67,7 +68,7 @@ export default ngModule => {
             CampaignsService.add(vm.params.campaign);
             SourcesService.add(vm.params.source);
             MediumsService.addToSource(vm.params.source, vm.params.medium);
-            LongLinksService.add(vm.inputUrl, vm.params);
+            ConfigurationsService.add(vm.inputUrl, vm.params);
 
             ShortLinksService.add(generatedUrl).then((ref) => {
                 vm.reset();

@@ -3,6 +3,6 @@ export default ngModule => {
     require('./SourcesService')(ngModule);
     require('./MediumsService')(ngModule);
     require('./ShortLinksService')(ngModule);
-    require('./LongLinksService')(ngModule);
+    require('./ConfigurationsService')(ngModule);
     require('./UrlGeneratorService')(ngModule);
 }

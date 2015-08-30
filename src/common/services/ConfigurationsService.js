@@ -4,12 +4,12 @@ export default ngModule => {
     const crypto = require('crypto');
     const angular = require('angular');
 
-    ngModule.service('LongLinksService', LongLinksService);
+    ngModule.service('ConfigurationsService', ConfigurationsService);
 
-    function LongLinksService($firebaseArray, FIREBASE_URL) {
+    function ConfigurationsService($firebaseArray, FIREBASE_URL) {
         "use strict";
 
-        const ref = new Firebase(`${FIREBASE_URL}/longs`);
+        const ref = new Firebase(`${FIREBASE_URL}/configurations`);
 
         return {
 
