@@ -71,11 +71,23 @@ export default ngModule => {
                     ConfigurationsService.add(url, params);
                 });
 
-
+                return shortUrl;
             },
 
-            list(url) {
+            listConfigurations(url) {
+                return ConfigurationsService.listForUrl(url);
+            },
 
+            listCampaigns() {
+                return CampaignsService.list();
+            },
+
+            listSources() {
+                return SourcesService.list();
+            },
+
+            listMediumsForSource(source) {
+                return MediumsService.listForSource(source);
             }
 
         };
