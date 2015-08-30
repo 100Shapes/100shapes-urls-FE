@@ -19,10 +19,16 @@ export default ngModule => {
 
             addToSource(source, name) {
 
+                let source_slug = slugify(source).toLowerCase();
                 let name_slug = slugify(name).toLowerCase();
 
-                let mediums = this.listForSource(source);
-                mediums.$add(name_slug);
+                let item = $firebaseObject(
+                    ref.child(source_slug)
+                        .child(name_slug)
+                );
+
+                item.$value = true;
+                return item.$save();
 
             }
         };
