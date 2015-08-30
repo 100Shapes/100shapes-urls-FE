@@ -34,7 +34,7 @@
 
             <md-grid-tile ng-repeat="configuration in vm.configurations track by configuration.$id"
                           ng-click="vm.setOutputUrl(configuration.shortUrl)"
-                          class="md-whiteframe-z2">
+                          class="md-whiteframe-z2 link-suggestion">
 
                 <ul>
                     <li>{{ configuration.source }}</li>
