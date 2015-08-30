@@ -55,66 +55,97 @@
                  ng-if="vm.inputUrl">
 
             <md-card-content>
-                <h2 class="md-title">Not in the list above? Create a new share link</h2>
+                <h2 class="md-title">
+                    <span ng-if="!vm.configurations">Not in the list above?</span>
+                    Create a new share link</h2>
 
-                <md-autocomplete flex required
-                                 md-input-name="campaign"
-                                 md-search-text="vm.params.campaign"
-                                 md-items="campaign in vm.allCampaigns()"
-                                 md-item-text="campaign.name"
-                                 md-floating-label="Add a campaign">
-                    <md-item-template>
+
+                <div flex layout="row">
+                    <md-autocomplete flex="50" required
+                                     md-input-name="campaign"
+                                     md-search-text="vm.params.campaign"
+                                     md-items="campaign in vm.allCampaigns()"
+                                     md-item-text="campaign.name"
+                                     md-floating-label="Add a campaign">
+                        <md-item-template>
                         <span md-highlight-text="vm.params.campaign"
                               md-highlight-flags="^i">
                             {{ campaign.name }}
                         </span>
-                    </md-item-template>
+                        </md-item-template>
 
-                    <div ng-messages="vm.urlForm.campaign.$error"
-                         ng-if="vm.urlForm.campaign.$touched">
+                        <div ng-messages="vm.urlForm.campaign.$error"
+                             ng-if="vm.urlForm.campaign.$touched">
 
-                        <div ng-message="required">You <b>must</b> provide a campaign.</div>
+                            <div ng-message="required">You <b>must</b> provide a campaign.</div>
+                        </div>
+                    </md-autocomplete>
+
+                    <div flex="10"></div>
+
+                    <div flex>
+                        <p class="md-caption">The individual campaign name, slogan, promo code, etc. for a product.</p>
                     </div>
-                </md-autocomplete>
 
+                </div>
 
-                <md-autocomplete flex required
-                                 md-input-name="source"
-                                 md-search-text="vm.params.source"
-                                 md-items="source in vm.allSources()"
-                                 md-item-text="source.name"
-                                 md-floating-label="Where are you sharing? i.e. 'Twitter'">
-                    <md-item-template>
+                <div flex layout="row">
+                    <md-autocomplete flex="50" required
+                                     md-input-name="source"
+                                     md-search-text="vm.params.source"
+                                     md-items="source in vm.allSources()"
+                                     md-item-text="source.name"
+                                     md-floating-label="Where are you sharing? i.e. 'Twitter'">
+                        <md-item-template>
                         <span md-highlight-text="vm.params.source"
                               md-highlight-flags="^i">
                             {{ source.name }}
                         </span>
-                    </md-item-template>
+                        </md-item-template>
 
-                    <div ng-messages="vm.urlForm.source.$error"
-                         ng-if="vm.urlForm.source.$touched">
-                        <div ng-message="required">You <b>must</b> provide a source.</div>
+                        <div ng-messages="vm.urlForm.source.$error"
+                             ng-if="vm.urlForm.source.$touched">
+                            <div ng-message="required">You <b>must</b> provide a source.</div>
+                        </div>
+                    </md-autocomplete>
+
+                    <div flex="10"></div>
+
+                    <div flex>
+                        <p class="md-caption">Identify the advertiser, site, publication, etc. that is sending traffic
+                            to your property, for example: google, newsletter4, billboard.</p>
                     </div>
-                </md-autocomplete>
 
-                <md-autocomplete flex required
-                                 md-input-name="medium"
-                                 md-search-text="vm.params.medium"
-                                 md-items="medium in vm.allMediumsForSource(vm.params.source)"
-                                 md-item-text="medium.$id"
-                                 md-floating-label="As a what? i.e. 'post'">
-                    <md-item-template>
+                </div>
+
+                <div flex layout="row">
+                    <md-autocomplete flex="50" required
+                                     md-input-name="medium"
+                                     md-search-text="vm.params.medium"
+                                     md-items="medium in vm.allMediumsForSource(vm.params.source)"
+                                     md-item-text="medium.$id"
+                                     md-floating-label="As a what? i.e. 'post'">
+                        <md-item-template>
                         <span md-highlight-text="vm.params.medium"
                               md-highlight-flags="^i">
                             {{ medium.$id }}
                         </span>
-                    </md-item-template>
+                        </md-item-template>
 
-                    <div ng-messages="vm.urlForm.medium.$error"
-                         ng-if="vm.urlForm.medium.$touched">
-                        <div ng-message="required">You <b>must</b> provide a medium.</div>
+                        <div ng-messages="vm.urlForm.medium.$error"
+                             ng-if="vm.urlForm.medium.$touched">
+                            <div ng-message="required">You <b>must</b> provide a medium.</div>
+                        </div>
+                    </md-autocomplete>
+
+                    <div flex="10"></div>
+
+                    <div flex>
+                        <p class="md-caption">The advertising or marketing medium, for example: cpc, banner, email
+                            newsletter.</p>
                     </div>
-                </md-autocomplete>
+
+                </div>
 
 
             </md-card-content>
