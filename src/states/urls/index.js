@@ -35,12 +35,22 @@ export default ngModule => {
             return MediumsService.listForSource(source);
         };
 
+        vm.configurations = [];
+
+        vm.onUrlChange = () => {
+            vm.configurations = LongLinksService.listForUrl(vm.inputUrl);
+        };
+
         vm.reset = () => {
             "use strict";
-
+            vm.isSaving = false;
             vm.params = {};
             vm.inputUrl = '';
-            vm.isSaving = false;
+            vm.configurations = [];
+        };
+
+        vm.setOutputUrl = (url) => {
+            vm.outputUrl = url;
         };
 
         vm.create = () => {

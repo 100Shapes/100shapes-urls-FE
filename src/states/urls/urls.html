@@ -11,6 +11,8 @@
                     <label>URL to share</label>
                     <input ng-model="vm.inputUrl"
                            required
+                           ng-change="vm.onUrlChange()"
+                           ng-model-options="{updateOn: 'blur'}"
                            name="url"
                            type="url"
                            ng-pattern="/http://www.100shapes.com/*/">
@@ -21,6 +23,19 @@
                         <div ng-message="pattern">Whoa there! I only shorten URLs for <b>100 Shapes</b>.</div>
                     </div>
                 </md-input-container>
+
+                <ul>
+                    <li ng-repeat="configuration in vm.configurations track by configuration.$id">
+                        <a href
+                           ng-click="vm.setOutputUrl(configuration.shortUrl)">
+                            <h2>{{ configuration.campaign }}</h2>
+                            <ul>
+                                <li>{{ configuration.source }}</li>
+                                <li>{{ configuration.medium }}</li>
+                            </ul>
+                        </a>
+                    </li>
+                </ul>
 
                 <md-autocomplete flex required
                                  md-input-name="campaign"
