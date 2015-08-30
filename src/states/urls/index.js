@@ -51,6 +51,7 @@ export default ngModule => {
             vm.params = {};
             vm.inputUrl = '';
             vm.configurations = [];
+            vm.urlForm.$setPristine();
         };
 
         vm.setOutputUrl = (url) => {

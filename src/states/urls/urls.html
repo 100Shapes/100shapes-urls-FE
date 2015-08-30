@@ -101,12 +101,12 @@
                                  md-input-name="medium"
                                  md-search-text="vm.params.medium"
                                  md-items="medium in vm.allMediumsForSource(vm.params.source)"
-                                 md-item-text="medium.$value"
+                                 md-item-text="medium.$id"
                                  md-floating-label="As a what? i.e. 'post'">
                     <md-item-template>
                         <span md-highlight-text="vm.params.medium"
                               md-highlight-flags="^i">
-                            {{ medium.$value }}
+                            {{ medium.$id }}
                         </span>
                     </md-item-template>
 
