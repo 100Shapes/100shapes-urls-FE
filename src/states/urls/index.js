@@ -15,7 +15,7 @@ export default ngModule => {
 
     ngModule.controller('UrlsCtrl', UrlsCtrl);
 
-    function UrlsCtrl(CampaignsService, ShortLinksService, MediumsService, SourcesService, UrlGeneratorService) {
+    function UrlsCtrl(CampaignsService, ShortLinksService, LongLinksService, MediumsService, SourcesService, UrlGeneratorService) {
         "use strict";
         let vm = this;
 
@@ -52,6 +52,7 @@ export default ngModule => {
             CampaignsService.add(vm.params.campaign);
             SourcesService.add(vm.params.source);
             MediumsService.addToSource(vm.params.source, vm.params.medium);
+            LongLinksService.add(vm.inputUrl, vm.params);
 
             ShortLinksService.add(generatedUrl).then((ref) => {
                 vm.reset();

@@ -6,7 +6,7 @@ export default ngModule => {
 
     ngModule.service('LongLinksService', LongLinksService);
 
-    function LongLinksService($firebaseObject, FIREBASE_URL) {
+    function LongLinksService($firebaseArray, FIREBASE_URL) {
         "use strict";
 
         const ref = new Firebase(`${FIREBASE_URL}/longs`);
@@ -21,17 +21,17 @@ export default ngModule => {
                     .digest("hex");
             },
 
-            add(longUrl) {
+            add(longUrl, params) {
 
                 const urlHash = this.hashForUrl(longUrl);
-                const linkRef = ref.child(urlHash);
-                let link = $firebaseObject(linkRef);
+                const linksRef = ref.child(urlHash);
+                let links = $firebaseArray(linksRef);
 
-                angular.extend(link, {
+                let newLink = angular.extend({
                     url: longUrl
-                });
+                }, params);
 
-                link.$save();
+                return links.$add(newLink);
             },
 
             listForUrl(longUrl) {
