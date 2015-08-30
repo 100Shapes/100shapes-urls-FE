@@ -15,7 +15,7 @@ export default ngModule => {
 
     ngModule.controller('UrlsCtrl', UrlsCtrl);
 
-    function UrlsCtrl(CampaignsService, ShortLinksService, ConfigurationsService, MediumsService, SourcesService, UrlGeneratorService) {
+    function UrlsCtrl(LinkService, CampaignsService, ShortLinksService, ConfigurationsService, MediumsService, SourcesService, UrlGeneratorService) {
         "use strict";
         let vm = this;
 
@@ -47,12 +47,12 @@ export default ngModule => {
 
         vm.reset = () => {
             "use strict";
-            vm.isSaving = false;
             vm.params = {};
             vm.inputUrl = '';
             vm.configurations = [];
             vm.urlForm.$setPristine();
             vm.urlForm.setUntouched();
+            vm.isSaving = false;
         };
 
         vm.setOutputUrl = (url) => {
@@ -63,18 +63,8 @@ export default ngModule => {
             "use strict";
 
             vm.isSaving = true;
-            const generatedUrl = UrlGeneratorService.generate(vm.inputUrl, vm.params);
+            LinkService.create(vm.inputUrl, vm.params);
 
-            CampaignsService.add(vm.params.campaign);
-            SourcesService.add(vm.params.source);
-            MediumsService.addToSource(vm.params.source, vm.params.medium);
-            ConfigurationsService.add(vm.inputUrl, vm.params);
-
-            ShortLinksService.add(generatedUrl).then((ref) => {
-                vm.reset();
-                const key = ref.key();
-                vm.outputUrl = `http://100s.co/${key}`;
-            });
 
         };
 

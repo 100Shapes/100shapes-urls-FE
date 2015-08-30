@@ -28,8 +28,7 @@ export default ngModule => {
                 let links = $firebaseArray(linksRef);
 
                 let newLink = angular.extend({
-                    url: longUrl,
-                    shortUrl: 'http://100s/co/aaaaaa'
+                    url: longUrl
                 }, params);
 
                 return links.$add(newLink);
