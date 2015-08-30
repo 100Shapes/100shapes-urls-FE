@@ -9,7 +9,7 @@ export default ngModule => {
     function ConfigurationsService($firebaseArray, FIREBASE_URL) {
         "use strict";
 
-        const ref = new Firebase(`${FIREBASE_URL}/configurations`);
+        const ref = new Firebase(`${FIREBASE_URL}/configuration`);
 
         return {
 

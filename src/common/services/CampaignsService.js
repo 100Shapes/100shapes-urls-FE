@@ -7,7 +7,7 @@ export default ngModule => {
     function CampaignsService($firebaseArray, $firebaseObject, FIREBASE_URL) {
         "use strict";
 
-        const ref = new Firebase(`${FIREBASE_URL}/campaigns`);
+        const ref = new Firebase(`${FIREBASE_URL}/campaign`);
         let campaigns = $firebaseArray(ref);
 
         return {

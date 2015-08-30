@@ -7,7 +7,7 @@ export default ngModule => {
     function ShortLinksService($firebaseArray, $firebaseObject, FIREBASE_URL) {
         "use strict";
 
-        const ref = new Firebase(`${FIREBASE_URL}/shorts`);
+        const ref = new Firebase(`${FIREBASE_URL}/short`);
 
         return {
 

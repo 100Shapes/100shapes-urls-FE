@@ -55,7 +55,17 @@ export default ngModule => {
                     source,
                     medium,
                     shortUrl
-                ]).then((params) => {
+                ]).then((values) => {
+
+                    const [campaign, source, medium, shortUrl] = values;
+
+                    const params = {
+                        campaign,
+                        source,
+                        medium,
+                        shortUrl
+                    };
+
                     ConfigurationsService.add(url, params);
                 });
 

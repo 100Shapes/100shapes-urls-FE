@@ -7,7 +7,7 @@ export default ngModule => {
     function MediumsService($firebaseArray, $firebaseObject, FIREBASE_URL) {
         "use strict";
 
-        const ref = new Firebase(`${FIREBASE_URL}/mediums`);
+        const ref = new Firebase(`${FIREBASE_URL}/medium`);
 
         return {
 

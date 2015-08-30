@@ -7,7 +7,7 @@ export default ngModule => {
     function SourcesService($firebaseArray, $firebaseObject, FIREBASE_URL) {
         "use strict";
 
-        const ref = new Firebase(`${FIREBASE_URL}/sources`);
+        const ref = new Firebase(`${FIREBASE_URL}/source`);
         let sources = $firebaseArray(ref);
 
         return {
