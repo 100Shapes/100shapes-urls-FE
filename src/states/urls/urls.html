@@ -1,7 +1,7 @@
 <div flex-gt-md="50"
      flex-gt-sm="90">
 
-    <form name="urlForm" novalidate>
+    <form name="vm.urlForm" novalidate>
 
         <md-card ng-disabled="vm.isSaving">
             <md-card-content>
@@ -17,8 +17,8 @@
                            type="url"
                            ng-pattern="/http://www.100shapes.com/*/">
 
-                    <div ng-messages="urlForm.url.$error"
-                         ng-if="urlForm.url.$touched">
+                    <div ng-messages="vm.urlForm.url.$error"
+                         ng-if="vm.urlForm.url.$touched">
                         <div ng-message="required">Whoa there! You <b>need</b> to fill me in.</div>
                         <div ng-message="pattern">Whoa there! I only shorten URLs for <b>100 Shapes</b>.</div>
                     </div>
@@ -28,9 +28,9 @@
         </md-card>
 
 
-        <md-grid-list md-cols="2"
-                      md-gutter="1em"
-                      md-row-height="16:9">
+        <md-grid-list md-cols="3"
+                      md-gutter="8px"
+                      md-row-height="4:3">
 
             <md-grid-tile ng-repeat="configuration in vm.configurations track by configuration.$id"
                           ng-click="vm.setOutputUrl(configuration.shortUrl)"
@@ -69,8 +69,8 @@
                         </span>
                     </md-item-template>
 
-                    <div ng-messages="urlForm.campaign.$error"
-                         ng-if="urlForm.campaign.$touched">
+                    <div ng-messages="vm.urlForm.campaign.$error"
+                         ng-if="vm.urlForm.campaign.$touched">
 
                         <div ng-message="required">You <b>must</b> provide a campaign.</div>
                     </div>
@@ -90,8 +90,8 @@
                         </span>
                     </md-item-template>
 
-                    <div ng-messages="urlForm.source.$error"
-                         ng-if="urlForm.source.$touched">
+                    <div ng-messages="vm.urlForm.source.$error"
+                         ng-if="vm.urlForm.source.$touched">
                         <div ng-message="required">You <b>must</b> provide a source.</div>
                     </div>
                 </md-autocomplete>
@@ -109,8 +109,8 @@
                         </span>
                     </md-item-template>
 
-                    <div ng-messages="urlForm.medium.$error"
-                         ng-if="urlForm.medium.$touched">
+                    <div ng-messages="vm.urlForm.medium.$error"
+                         ng-if="vm.urlForm.medium.$touched">
                         <div ng-message="required">You <b>must</b> provide a medium.</div>
                     </div>
                 </md-autocomplete>
@@ -120,7 +120,7 @@
 
             <div class="md-actions" layout="row" layout-align="end center">
                 <md-button ng-click="vm.create()"
-                           ng-disabled="urlForm.$invalid"
+                           ng-disabled="vm.urlForm.$invalid"
                            class="md-raised md-primary">
 
                     Create

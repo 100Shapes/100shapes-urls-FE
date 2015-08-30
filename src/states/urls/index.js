@@ -38,6 +38,10 @@ export default ngModule => {
         vm.configurations = [];
 
         vm.onUrlChange = () => {
+            if (!vm.urlForm.url.$valid) {
+                return false;
+            }
+
             vm.configurations = LongLinksService.listForUrl(vm.inputUrl);
         };
 
