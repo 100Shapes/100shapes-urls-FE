@@ -1,10 +1,11 @@
 export default ngModule => {
 
     let urllib = require('url');
+    const angular = require('angular');
 
     ngModule.service('LinkService', LinkService);
 
-    function LinkService(SHORT_URL_HOSTNAME, $q, UrlGeneratorService, CampaignsService, SourcesService, MediumsService, ConfigurationsService, ShortLinksService) {
+    function LinkService(SHORT_URL_HOSTNAME, $q, UrlGeneratorService, ContentService, CampaignsService, SourcesService, MediumsService, ConfigurationsService, ShortLinksService) {
         "use strict";
 
         return {
@@ -38,6 +39,13 @@ export default ngModule => {
                     });
             },
 
+            _saveContent(value) {
+                return ContentService.add(value)
+                    .then((ref) => {
+                        return ref.key();
+                    });
+            },
+
             create(url, params) {
 
                 let campaign = this._saveCampaign(params.campaign);
@@ -52,23 +60,22 @@ export default ngModule => {
                 const generatedUrl = UrlGeneratorService.generate(url, params);
                 let shortUrl = this._saveShort(generatedUrl);
 
-                $q.all([
+                let promises = {
                     campaign,
                     source,
                     medium,
                     shortUrl
-                ]).then((values) => {
+                };
 
-                    const [campaign, source, medium, shortUrl] = values;
+                if (params.hasOwnProperty('content')) {
+                    promises.content = this._saveContent(params.content)
+                }
 
-                    const params = {
-                        campaign,
-                        source,
-                        medium,
-                        shortUrl
-                    };
-
-                    ConfigurationsService.add(url, params);
+                $q.all(promises).then((params) => {
+                    debugger;
+                    ConfigurationsService.add(url, angular.extend({
+                        ts: Firebase.ServerValue.TIMESTAMP
+                    }, params));
                 });
 
                 return shortUrl;

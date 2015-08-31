@@ -1,6 +1,7 @@
 export default ngModule => {
     require('./CampaignsService')(ngModule);
     require('./SourcesService')(ngModule);
+    require('./ContentService')(ngModule);
     require('./MediumsService')(ngModule);
     require('./LinkService')(ngModule);
     require('./ShortLinksService')(ngModule);
