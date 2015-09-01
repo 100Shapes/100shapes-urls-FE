@@ -71,7 +71,7 @@
                                      md-search-text="vm.params.campaign"
                                      md-items="campaign in vm.allCampaigns()"
                                      md-item-text="campaign.name"
-                                     md-floating-label="Add a campaign">
+                                     md-floating-label="Campaign">
                         <md-item-template>
                         <span md-highlight-text="vm.params.campaign"
                               md-highlight-flags="^i">
@@ -82,7 +82,7 @@
                         <div ng-messages="vm.urlForm.campaign.$error"
                              ng-if="vm.urlForm.campaign.$touched">
 
-                            <div ng-message="required">You <b>must</b> provide a campaign.</div>
+                            <div ng-message="required">I'm <b>required</b>.</div>
                         </div>
                     </md-autocomplete>
 
@@ -110,7 +110,7 @@
 
                         <div ng-messages="vm.urlForm.source.$error"
                              ng-if="vm.urlForm.source.$touched">
-                            <div ng-message="required">You <b>must</b> provide a source.</div>
+                            <div ng-message="required">I'm <b>required</b>.</div>
                         </div>
                     </md-autocomplete>
 
@@ -124,7 +124,7 @@
                 </div>
 
                 <div flex layout="row">
-                    <md-autocomplete flex="50" required
+                    <md-autocomplete flex="50"
                                      md-input-name="medium"
                                      md-search-text="vm.params.medium"
                                      md-items="medium in vm.allMediumsForSource(vm.params.source)"
@@ -137,10 +137,6 @@
                         </span>
                         </md-item-template>
 
-                        <div ng-messages="vm.urlForm.medium.$error"
-                             ng-if="vm.urlForm.medium.$touched">
-                            <div ng-message="required">You <b>must</b> provide a medium.</div>
-                        </div>
                     </md-autocomplete>
 
                     <div flex="10"></div>
@@ -148,6 +144,20 @@
                     <div flex>
                         <p class="md-caption">The advertising or marketing medium, for example: cpc, banner, email
                             newsletter.</p>
+                    </div>
+
+                </div>
+
+                <div flex layout="row">
+                    <md-input-container flex="50">
+                        <label>Where precisely? i.e. "Trev's wall"</label>
+                        <input ng-model="vm.params.content">
+                    </md-input-container>
+
+                    <div flex="10"></div>
+
+                    <div flex>
+                        <p class="md-caption">Used to differentiate similar content, or links within the same ad. For example, if you have two call-to-action links within the same email message, you can use utm_content and set different values for each so you can tell which version is more effective.</p>
                     </div>
 
                 </div>
