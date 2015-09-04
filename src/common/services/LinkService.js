@@ -72,7 +72,6 @@ export default ngModule => {
                 }
 
                 $q.all(promises).then((params) => {
-                    debugger;
                     ConfigurationsService.add(url, angular.extend({
                         ts: Firebase.ServerValue.TIMESTAMP
                     }, params));

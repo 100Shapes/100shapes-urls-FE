@@ -20,6 +20,14 @@
 <md-toolbar layout="row">
     <div class="md-toolbar-tools">
         <h1>100 Shapes URL generator</h1>
+
+        <span flex></span>
+
+        <md-button aria-label="Log out"
+                   ng-click="vm.Auth.$unauth()"
+                   ng-if="vm.Auth.$getAuth()">
+            Log out
+        </md-button>
     </div>
 </md-toolbar>
 
