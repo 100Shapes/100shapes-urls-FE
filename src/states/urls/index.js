@@ -7,7 +7,12 @@ export default ngModule => {
                 .state('urls', {
                     url: '/',
                     template: require('./urls.html'),
-                    controller: 'UrlsCtrl as vm'
+                    controller: 'UrlsCtrl as vm',
+                    resolve: {
+                        currentAuth(AuthService) {
+                            return AuthService.$requireAuth();
+                        }
+                    }
                 });
         });
 
@@ -15,9 +20,13 @@ export default ngModule => {
 
     ngModule.controller('UrlsCtrl', UrlsCtrl);
 
-    function UrlsCtrl(LinkService) {
+    function UrlsCtrl(currentAuth, LinkService, $state) {
         "use strict";
         let vm = this;
+
+        if (!currentAuth) {
+            $state.go('auth');
+        }
 
         vm.inputUrl = '';
 

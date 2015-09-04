@@ -9,7 +9,7 @@ export default ngModule => {
         })
 
         .config(function ($urlRouterProvider) {
-            $urlRouterProvider.otherwise('/');
+            $urlRouterProvider.otherwise('/auth');
 
         })
 

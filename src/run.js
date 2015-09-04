@@ -30,6 +30,24 @@ export default ngModule => {
             }
         })
 
+        // Auth
+
+        .run(function ($rootScope, $location) {
+            "use strict";
+
+            $rootScope.$on("$routeChangeError", function (event, next, previous, error) {
+                // We can catch the error thrown when the $requireAuth promise is rejected
+                // and redirect the user back to the home page
+                debugger;
+
+                if (error === "AUTH_REQUIRED") {
+                    $location.path("/auth");
+                }
+            });
+
+
+        })
+
     ;
 
 };
